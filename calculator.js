@@ -1,6 +1,6 @@
 initializeButtons()
 
-let operations = []
+let operations = [] // acts at the calculator's memory
 
 function updateDisplay(operation, e=undefined, result="" ) {
     display = document.querySelector('.display');
@@ -52,4 +52,13 @@ function initializeButtons() {
         display.textContent = ""
     })
     });
+
+    const clearButton = document.querySelector('.clear-button');
+    clearButton.addEventListener("click", clear)
+}
+
+function clear() {
+    const display = document.querySelector(".display");
+    display.textContent = "";
+    operations.length = 0; // clear number and operators in "memory"
 }
