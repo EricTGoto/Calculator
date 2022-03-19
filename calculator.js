@@ -1,24 +1,6 @@
+initializeButtons()
+
 let operations = []
-
-const numberButtons = document.querySelectorAll('.number-button');
-numberButtons.forEach(button => {
-    console.log(button)
-    button.addEventListener("click", (e) => updateDisplay(false, e))
-});
-
-const operationButtons = document.querySelectorAll('.operation-button');
-operationButtons.forEach(button => {
-    button.addEventListener("click", (e) => {
-        display = document.querySelector('.display');
-        operations.push(display.textContent)
-        operations.push(e.target.textContent)
-        display.textContent = ""
-    })
-});
-
-const equalsButton = document.querySelector('.equals-button');
-equalsButton.addEventListener("click", operate)
-
 
 function updateDisplay(operation, e=undefined, result="" ) {
     display = document.querySelector('.display');
@@ -49,4 +31,25 @@ function operate() {
     }
     operations.push(result);
     updateDisplay(true, undefined, result)
+}
+
+function initializeButtons() {
+    const equalsButton = document.querySelector('.equals-button');
+    equalsButton.addEventListener("click", operate)
+
+    const numberButtons = document.querySelectorAll('.number-button');
+    numberButtons.forEach(button => {
+        console.log(button)
+        button.addEventListener("click", (e) => updateDisplay(false, e))
+    });
+
+    const operationButtons = document.querySelectorAll('.operation-button');
+    operationButtons.forEach(button => {
+    button.addEventListener("click", (e) => {
+        display = document.querySelector('.display');
+        operations.push(display.textContent)
+        operations.push(e.target.textContent)
+        display.textContent = ""
+    })
+    });
 }
