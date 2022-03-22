@@ -21,18 +21,33 @@ function operate() {
     const operand1 = parseFloat(operations.pop());
 
     if (operator == "+") {
-        result = operand1 + operand2;
+        result = add(operand1, operand2);
     } else if (operator == "-") {
-        result = operand1 - operand2;
+        result = subtract(operand1, operand2);
     } else if (operator == "/") {
-        result = operand1 / operand2;
+        result = divide(operand1, operand2);
     } else {
-        result = operand1 * operand2;
+        result = multiply(operand1, operand2);
     }
     operations.push(result);
     updateDisplay(true, undefined, result)
 }
 
+function add(operand1, operand2) {
+    return operand1 + operand2
+} 
+
+function subtract(operand1, operand2) {
+    return operand1 - operand2
+}
+
+function divide (operand1, operand2) {
+    return operand1 / operand2
+}
+
+function multiply(operand1, operand2) {
+    return operand1 * operand2
+}
 function initializeButtons() {
     const equalsButton = document.querySelector('.equals-button');
     equalsButton.addEventListener("click", operate)
