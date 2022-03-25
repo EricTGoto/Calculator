@@ -1,6 +1,6 @@
 initializeButtons()
 
-let operations = [] // acts at the calculator's memory
+let operations = [] // acts as the calculator's memory
 
 function updateDisplay(operation, e=undefined, result="" ) {
     display = document.querySelector('.display');
@@ -48,6 +48,7 @@ function divide (operand1, operand2) {
 function multiply(operand1, operand2) {
     return operand1 * operand2
 }
+
 function initializeButtons() {
     const equalsButton = document.querySelector('.equals-button');
     equalsButton.addEventListener("click", operate)
