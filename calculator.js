@@ -1,34 +1,41 @@
-initializeButtons()
+let operations = [] // acts as the calculator's memory, at most  index long
+let operatorPressed = false
+const display = document.querySelector('.display');
 
-let operations = [] // acts as the calculator's memory, at most 3 index long
+initializeButtons();
 
 function updateDisplay(operation, e=undefined, result="" ) {
-    display = document.querySelector('.display');
+    console.log(operatorPressed)
+    if (operatorPressed) {
+        display.textContent = '';
+    }
+    console.log(result);
     if (!operation) {
         display.textContent = display.textContent + e.target.textContent;
     }
     else {
         display.textContent = result
+    
     }
 }
-    
+
 function operate() {
-    const display = document.querySelector('.display');
-    operations.push(parseFloat(display.textContent));
+    //operations.push(parseFloat(display.textContent));
+
     let result = 0;
 
     let operand1 = 0;
     let operand2 = 0;
     let operator = "";
 
-    if (parseFloat(operations[1].isNaN())) {
+    if (isNaN(parseFloat(operations[1]))) {
         operand2 = parseFloat(operations.pop());
         operator = operations.pop();
         operand1 = parseFloat(operations.pop());
     } else {
-        operator = operations.pop();
         operand2 = parseFloat(operations.pop());
         operand1 = parseFloat(operations.pop());
+        operator = operations.pop();
     }
     
     if (operator == "+") {
@@ -40,7 +47,6 @@ function operate() {
     } else {
         result = multiply(operand1, operand2);
     }
-
     updateDisplay(true, undefined, result)
 }
 
@@ -60,9 +66,14 @@ function multiply(operand1, operand2) {
     return operand1 * operand2
 }
 
+function equalsButtonActions() {
+    operations.push(display.textContent);
+    operate()
+}
+
 function initializeButtons() {
     const equalsButton = document.querySelector('.equals-button');
-    equalsButton.addEventListener("click", operate)
+    equalsButton.addEventListener("click", equalsButtonActions)
 
     const numberButtons = document.querySelectorAll('.number-button');
     numberButtons.forEach(button => {
@@ -73,10 +84,11 @@ function initializeButtons() {
     const operationButtons = document.querySelectorAll('.operation-button');
     operationButtons.forEach(button => {
     button.addEventListener("click", (e) => {
-        display = document.querySelector('.display');
-        operations.push(display.textContent); // push in the number
+        operatorPressed = true;
+        operations.push(display.textContent); // push in the number  
         if (operations.length == 3) operate();
         operations.push(e.target.textContent); // push in the operator
+        if (isNaN(operations[0])) operations.push(display.textContent);
     })
     });
 
@@ -85,7 +97,6 @@ function initializeButtons() {
 }
 
 function clear() {
-    const display = document.querySelector(".display");
     display.textContent = "";
     operations.length = 0; // clear number and operators in "memory"
 }
