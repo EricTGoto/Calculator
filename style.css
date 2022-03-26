@@ -68,6 +68,10 @@ body {
     height: 70px;
 }
 
+.zero {
+    width: 150px;
+}
+
 .equals-button,
 .clear-button {
     width: 50px;
