@@ -62,7 +62,7 @@ function multiply(operand1, operand2) {
 
 function equalsButtonActions() {
     operations.push(display.textContent);
-    operatorPressed = false;
+    operatorPressed = true;
     operate();
 }
 
