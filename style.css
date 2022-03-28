@@ -18,7 +18,7 @@ body {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    width: 500px;
+    width: 450px;
     height: 500px;
     border-style: solid;
     border-width: thin;
@@ -31,12 +31,22 @@ body {
     display: flex;
     align-items: center;
     justify-content: end;
-    width: 400px;
-    height: 100px;
+    width: 350px;
+    height: 50px;
     border-style: solid;
     border-width: thin;
     border-radius: 5px;
     font-size: 45px;
+    padding: 10px;
+}
+
+button {
+    background-color: #BDD5EA;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: rgba(189, 213, 234, 0.7);
 }
 
 .buttons {
@@ -57,12 +67,6 @@ body {
     margin-left: 10px;
 }
 
-.operation-button,
-.number-button {
-    background-color: #BDD5EA;
-    border-radius: 5px;
-}
-
 .operation-button {
     width: 50px;
     height: 50px;
@@ -71,7 +75,6 @@ body {
 .number-button {
     width: 70px;
     height: 70px;
-    
 }
 
 .zero {
@@ -82,6 +85,4 @@ body {
 .clear-button {
     width: 50px;
     height: 30px;
-    background-color: #BDD5EA;
-    border-radius: 5px;
 }
