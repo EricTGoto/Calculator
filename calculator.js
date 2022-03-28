@@ -5,7 +5,6 @@ const display = document.querySelector('.display');
 initializeButtons();
 
 function updateDisplay(operation, e=undefined, result="" ) {
-    console.log(operatorPressed)
     if (operatorPressed) {
         display.textContent = '';
     }
@@ -15,7 +14,6 @@ function updateDisplay(operation, e=undefined, result="" ) {
     }
     else {
         display.textContent = result
-    
     }
 }
 
@@ -47,7 +45,8 @@ function operate() {
     } else {
         result = multiply(operand1, operand2);
     }
-    updateDisplay(true, undefined, result)
+    operatorPressed = false;
+    updateDisplay(true, undefined, result);
 }
 
 function add(operand1, operand2) {
