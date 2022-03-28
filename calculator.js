@@ -78,11 +78,13 @@ function dotButtonAction(e) {
 }
 
 function operationButtonActions(e) {
-    operatorPressed = true;
-    operations.push(display.textContent); // push in the number  
-    if (operations.length == 3) operate();
-    operations.push(e.target.textContent); // push in the operator
-    if (isNaN(operations[0])) operations.push(display.textContent);
+    if(!(display.textContent == "" || display.textContent == ".")) {
+        operatorPressed = true;
+        operations.push(display.textContent); // push in the number  
+        if (operations.length == 3) operate();
+        operations.push(e.target.textContent); // push in the operator
+        if (isNaN(operations[0])) operations.push(display.textContent);
+    }
 }
 
 function initializeButtons() {
