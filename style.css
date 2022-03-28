@@ -79,6 +79,11 @@ button:hover {
     height: 70px;
 }
 
+.dot {
+    font-weight: bolder;
+    font-size: large;
+}
+
 .zero {
     width: 150px;
 }
