@@ -1,20 +1,18 @@
-let operations = [] // acts as the calculator's memory, at most 3 index long
-let operatorPressed = false
+// acts as the calculator's memory, at most 3 index long
+let operations = [] 
+// allows display to refresh after an operator is pressed
+let operatorPressed = false 
 const display = document.querySelector('.display');
 
 initializeButtons();
 
 function updateDisplay(operation, e=undefined, result="" ) {
-    console.log(operatorPressed)
-    if (operatorPressed) {
-        display.textContent = '';
-    }
-    console.log(result);
+    if (operatorPressed) display.textContent = '';
     if (!operation) {
         display.textContent = display.textContent + e.target.textContent;
     }
     else {
-        display.textContent = result
+        display.textContent = result;
     }
 }
 
@@ -43,7 +41,6 @@ function operate() {
     } else {
         result = multiply(operand1, operand2);
     }
-    
     updateDisplay(true, undefined, result);
 }
 
@@ -66,7 +63,7 @@ function multiply(operand1, operand2) {
 function equalsButtonActions() {
     operations.push(display.textContent);
     operatorPressed = false;
-    operate()
+    operate();
 }
 
 function numberButtonActions(e) {
@@ -74,26 +71,26 @@ function numberButtonActions(e) {
     operatorPressed = false;
 }
 
+function operationButtonActions(e) {
+    operatorPressed = true;
+    operations.push(display.textContent); // push in the number  
+    if (operations.length == 3) operate();
+    operations.push(e.target.textContent); // push in the operator
+    if (isNaN(operations[0])) operations.push(display.textContent);
+}
+
 function initializeButtons() {
     const equalsButton = document.querySelector('.equals-button');
-    equalsButton.addEventListener("click", equalsButtonActions)
+    equalsButton.addEventListener("click", equalsButtonActions);
 
     const numberButtons = document.querySelectorAll('.number-button');
     numberButtons.forEach(button => button.addEventListener("click",numberButtonActions));
 
     const operationButtons = document.querySelectorAll('.operation-button');
-    operationButtons.forEach(button => {
-    button.addEventListener("click", (e) => {
-        operatorPressed = true;
-        operations.push(display.textContent); // push in the number  
-        if (operations.length == 3) operate();
-        operations.push(e.target.textContent); // push in the operator
-        if (isNaN(operations[0])) operations.push(display.textContent);
-    })
-    });
+    operationButtons.forEach(button => button.addEventListener("click", operationButtonActions));
 
     const clearButton = document.querySelector('.clear-button');
-    clearButton.addEventListener("click", clear)
+    clearButton.addEventListener("click", clear);
 }
 
 function clear() {
