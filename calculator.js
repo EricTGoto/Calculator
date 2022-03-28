@@ -71,6 +71,12 @@ function numberButtonActions(e) {
     operatorPressed = false;
 }
 
+function dotButtonAction(e) {
+    if (!(display.textContent.includes("."))) {
+        updateDisplay(false, e);
+    }
+}
+
 function operationButtonActions(e) {
     operatorPressed = true;
     operations.push(display.textContent); // push in the number  
@@ -84,7 +90,10 @@ function initializeButtons() {
     equalsButton.addEventListener("click", equalsButtonActions);
 
     const numberButtons = document.querySelectorAll('.number-button');
-    numberButtons.forEach(button => button.addEventListener("click",numberButtonActions));
+    numberButtons.forEach(button => button.addEventListener("click", numberButtonActions));
+
+    const dot = document.querySelector('.dot');
+    dot.addEventListener("click", dotButtonAction);
 
     const operationButtons = document.querySelectorAll('.operation-button');
     operationButtons.forEach(button => button.addEventListener("click", operationButtonActions));

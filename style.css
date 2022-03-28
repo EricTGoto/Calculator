@@ -72,7 +72,9 @@ button:hover {
     height: 50px;
 }
 
-.number-button {
+
+.number-button,
+.dot {
     width: 70px;
     height: 70px;
 }
