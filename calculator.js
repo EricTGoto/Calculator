@@ -1,10 +1,11 @@
-let operations = [] // acts as the calculator's memory, at most  index long
+let operations = [] // acts as the calculator's memory, at most 3 index long
 let operatorPressed = false
 const display = document.querySelector('.display');
 
 initializeButtons();
 
 function updateDisplay(operation, e=undefined, result="" ) {
+    console.log(operatorPressed)
     if (operatorPressed) {
         display.textContent = '';
     }
@@ -18,14 +19,11 @@ function updateDisplay(operation, e=undefined, result="" ) {
 }
 
 function operate() {
-    //operations.push(parseFloat(display.textContent));
-
     let result = 0;
-
     let operand1 = 0;
     let operand2 = 0;
     let operator = "";
-
+    
     if (isNaN(parseFloat(operations[1]))) {
         operand2 = parseFloat(operations.pop());
         operator = operations.pop();
@@ -45,7 +43,7 @@ function operate() {
     } else {
         result = multiply(operand1, operand2);
     }
-    operatorPressed = false;
+    
     updateDisplay(true, undefined, result);
 }
 
@@ -67,7 +65,13 @@ function multiply(operand1, operand2) {
 
 function equalsButtonActions() {
     operations.push(display.textContent);
+    operatorPressed = false;
     operate()
+}
+
+function numberButtonActions(e) {
+    updateDisplay(false, e);
+    operatorPressed = false;
 }
 
 function initializeButtons() {
@@ -75,10 +79,7 @@ function initializeButtons() {
     equalsButton.addEventListener("click", equalsButtonActions)
 
     const numberButtons = document.querySelectorAll('.number-button');
-    numberButtons.forEach(button => {
-        console.log(button)
-        button.addEventListener("click", (e) => updateDisplay(false, e))
-    });
+    numberButtons.forEach(button => button.addEventListener("click",numberButtonActions));
 
     const operationButtons = document.querySelectorAll('.operation-button');
     operationButtons.forEach(button => {
