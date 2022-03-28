@@ -61,9 +61,11 @@ function multiply(operand1, operand2) {
 }
 
 function equalsButtonActions() {
-    operations.push(display.textContent);
-    operatorPressed = true;
-    operate();
+    if (!(display.textContent == "" || display.textContent == ".")){
+        operations.push(display.textContent);
+        operatorPressed = true;
+        operate();
+    }
 }
 
 function numberButtonActions(e) {
