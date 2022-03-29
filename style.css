@@ -43,10 +43,12 @@ body {
 button {
     background-color: #BDD5EA;
     border-radius: 5px;
+    border-color: #BDD5EA;
 }
 
 button:hover {
     background-color: rgba(189, 213, 234, 0.7);
+    border-color: rgba(189, 213, 234, 0.7);
 }
 
 .buttons {

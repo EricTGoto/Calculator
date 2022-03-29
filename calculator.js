@@ -9,7 +9,7 @@ initializeButtons();
 function updateDisplay(operation, e=undefined, result="" ) {
     console.log(operatorPressed)
     if (operatorPressed) display.textContent = '';
-    if (!operation && display.textContent.length <= 15) {
+    if (!operation && display.textContent.length <= 14) {
         display.textContent = display.textContent + e.target.textContent;
     }
     else if (operation){
@@ -47,8 +47,10 @@ function operate() {
 }
 
 function roundResult(number) {
-    if (number.toString().length > 14) {
-        return number.toFixed(14);
+    numberString = number.toString();
+    dotIndex = numberString.search(".")
+    if (number.toString().length > 13) {
+        return number.toFixed(13 - dotIndex);
     }
     return number
 }
