@@ -7,11 +7,12 @@ const display = document.querySelector('.display');
 initializeButtons();
 
 function updateDisplay(operation, e=undefined, result="" ) {
+    console.log(operatorPressed)
     if (operatorPressed) display.textContent = '';
-    if (!operation) {
+    if (!operation && display.textContent.length <= 15) {
         display.textContent = display.textContent + e.target.textContent;
     }
-    else {
+    else if (operation){
         display.textContent = result;
     }
 }
@@ -41,7 +42,15 @@ function operate() {
     } else {
         result = multiply(operand1, operand2);
     }
-    updateDisplay(true, undefined, result);
+    let roundedResult = roundResult(result);
+    updateDisplay(true, undefined, roundedResult);
+}
+
+function roundResult(number) {
+    if (number.toString().length > 14) {
+        return number.toFixed(14);
+    }
+    return number
 }
 
 function add(operand1, operand2) {
